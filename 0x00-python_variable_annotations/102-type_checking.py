@@ -4,10 +4,11 @@ Use mypy to validate the following piece of code and
 apply any necessary changes.
 """
 
-from typing import Tuple, List, Union, Any
+from typing import Tuple, List
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
+    """modify code to match annotations"""
     zoomed_in: List = [
         item for item in lst
         for i in range(factor)
