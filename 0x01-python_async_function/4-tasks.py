@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Import wait_random from the previous python file that you’ve written
-write an async routine called wait_n that takes in 2 int arguments
+Import task_wait_random from the previous python file that youve written
+write an async routine called task_wait_n that takes in 2 int arguments
 """
 import asyncio
 from typing import List
@@ -11,7 +11,9 @@ task_wait_random = __import__('3-tasks').task_wait_random
 
 async def task_wait_n(n: int, max_delay: int) -> List:
     """calls task_wait_random"""
+    delays = []
     tasks = [task_wait_random(max_delay) for _ in range(n)]
-    completed = await asyncio.gather(*tasks)
-    delays = sorted(completed)
+    for task in asyncio.as_completed(tasks):
+        delay = await task
+        delays.append(delay)
     return delays
